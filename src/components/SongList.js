@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { selectSong } from '../actions'
 
 const SongList = (props) => {
+    // you can see songs reducer named as songgs and selectSong Action creator
     console.log(props);// {songgs: Array(4), selectSong: ƒ}
     /* 
     {songgs: Array(4), dispatch: ƒ}
@@ -17,37 +18,66 @@ const SongList = (props) => {
     {songs: Array(4), selectSong: ƒ}
     */
 
-    const renderList = () =>{
+    // const renderList = () =>{
 
-        const newSongs = props.songgs.map( ( song ) => {
-            const { title } = song;
-            return(
-                <div className="item" key={title}>
-                    <div className="right floated content">
-                        <button 
-                            className="ui button primary"
-                            // when we call our action creator it will
-                            // take the action that is returned 
-                            // and send it into redux dispatch function
-                            onClick={ () => props.selectSong(song) }
-                            >
-                            Select
-                        </button>
-                    </div>
-                    <div className="content">{title}</div>
-                </div>
-            )
-        })
-        return newSongs;
-    }
+    //     const newSongs = props.songgs.map( ( song ) => {
+    //         const { title } = song;
+    //         return(
+    //             <div className="item" key={title}>
+    //                 <div className="right floated content">
+    //                     <button 
+    //                         className="ui button primary"
+    //                         // when we call our action creator it will
+    //                         // take the action that is returned 
+    //                         // and send it into redux dispatch function
+    //                         onClick={ () => props.selectSong(song) }
+    //                         >
+    //                         Select
+    //                     </button>
+    //                 </div>
+    //                 <div className="content">{title}</div>
+    //             </div>
+    //         )
+    //     })
+    //     return newSongs;
+    // }
 
+    // );
     return ( 
         <>
             {/* <RenderList/> */}
-            <div className="ui divided list">{renderList()}</div>
+            {/* <div className="ui divided list">{renderList()}</div> */}
+            <div className="ui divided list">
+                <List {...props}/>
+            </div>
         </>
-    );
+    )
+
 }
+
+const List = (props) =>(
+
+    props.songgs.map( ( song ) => {
+        const { title } = song;
+        return(
+            <div className="item" key={title}>
+                <div className="right floated content">
+                    <button 
+                        className="ui button primary"
+                        // when we call our action creator it will
+                        // take the action that is returned 
+                        // and send it into redux dispatch function
+                        onClick={ () => props.selectSong(song) }
+                        >
+                        Select
+                    </button>
+                </div>
+                <div className="content">{title}</div>
+            </div>
+        )
+    })
+
+)
 
 
 /* 
@@ -61,9 +91,9 @@ which mean every time we click on select button
 this function will re-run 
 */
 const mapStateToProps = (state) => {
+    // all the reducer can be seen here
     console.log(state); // { songs: Array(4), selectedSong: null }
     // selectedSong is null 
-
     /* 
     songs: Array(4)
     0: {title: "Push It Up", duration: "4:05"}
@@ -71,7 +101,6 @@ const mapStateToProps = (state) => {
     2: {title: "Swalla", duration: "3:08"}
     3: {title: "Despercito", duration: "6:34"} 
     */
-
     // after adding action and despatching it
     // {songs: Array(4), selectedSong: {…}}
 
@@ -95,6 +124,6 @@ so if you want to add action creator
 you need to pass it into connect function.
 */
 export default connect( mapStateToProps ,
-    // after adding select song action creator we can see it in props
+    // after adding selectSong action creator we can see it in props
     // name should match key
     { selectSong: selectSong } )(SongList);
