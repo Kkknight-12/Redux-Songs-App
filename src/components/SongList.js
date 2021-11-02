@@ -17,32 +17,6 @@ const SongList = (props) => {
     after adding action
     {songs: Array(4), selectSong: ƒ}
     */
-
-    // const renderList = () =>{
-
-    //     const newSongs = props.songgs.map( ( song ) => {
-    //         const { title } = song;
-    //         return(
-    //             <div className="item" key={title}>
-    //                 <div className="right floated content">
-    //                     <button 
-    //                         className="ui button primary"
-    //                         // when we call our action creator it will
-    //                         // take the action that is returned 
-    //                         // and send it into redux dispatch function
-    //                         onClick={ () => props.selectSong(song) }
-    //                         >
-    //                         Select
-    //                     </button>
-    //                 </div>
-    //                 <div className="content">{title}</div>
-    //             </div>
-    //         )
-    //     })
-    //     return newSongs;
-    // }
-
-    // );
     return ( 
         <>
             {/* <RenderList/> */}
@@ -76,9 +50,7 @@ const List = (props) =>(
             </div>
         )
     })
-
 )
-
 
 /* 
 mapStateToProps function gets called with all the data inside
