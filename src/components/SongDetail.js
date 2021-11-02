@@ -4,19 +4,22 @@ import {connect} from 'react-redux';
 const SonDetail = (props) => {
     // console.log(props) // {mySelectedSong: null, dispatch: ƒ}
     const { mySelectedSong } = props
-    console.log(mySelectedSong)
+    console.log("mySelectedSong", mySelectedSong)
 
-    if( !mySelectedSong ){
-        return <div>Select a Song</div>
-    }
     return ( 
         <div>
-            <h3>Details for:</h3>
-            <p>
-                Title: <strong>{mySelectedSong.title}</strong>
-                <br/>
-                Duration: <strong>{mySelectedSong.duration}</strong> 
-            </p>
+            { !mySelectedSong ?  <p>Select a Song</p> 
+                :
+                    <div>
+                        <h3>Details for:</h3>
+                        <p>
+                            Title: <strong>{mySelectedSong.title}</strong>
+                            <br />
+                            Duration: <strong>{mySelectedSong.duration}</strong>
+                        </p>
+                    </div>
+                
+            }
         </div>
     );
 }
